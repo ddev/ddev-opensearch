@@ -1,0 +1,8 @@
+name: ddev-opensearch
+
+pre_install_actions:
+
+# list of files and directories listed that are copied into project .ddev directory
+project_files:
+- opensearch
+- docker-compose.opensearch.yaml
