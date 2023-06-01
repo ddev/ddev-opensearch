@@ -25,7 +25,7 @@ services:
       - opensearch:/usr/share/opensearch/data
       - ".:/mnt/ddev_config"
 
-opensearch-dashboards:
+  opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest
     container_name: 'ddev-${DDEV_SITENAME}-opensearch-dashboards'
     hostname: '${DDEV_SITENAME}-opensearch-dashboards'
