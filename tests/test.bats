@@ -4,8 +4,7 @@ setup() {
   export TESTDIR=~/tmp/test-opensearch
   mkdir -p $TESTDIR
   export PROJECTNAME=test-opensearch
-  export ADDON_PATH="ddev/ddev-opensearch"
-  export USE_VERSION8=false
+  export ADDON_PATH="netz98/ddev-opensearch"
   export DDEV_NON_INTERACTIVE=true
   ddev delete -Oy ${PROJECTNAME} >/dev/null 2>&1 || true
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
@@ -22,6 +21,7 @@ execute_test() {
 
 health_checks() {
   ddev exec "curl -s opensearch:9200" | grep "${PROJECTNAME}-opensearch"
+  ddev exec -s opensearch-dashboards "curl -s -i opensearch-dashboards:5601 | grep osd-name"
 }
 
 teardown() {
