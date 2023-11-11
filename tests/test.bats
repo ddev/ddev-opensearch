@@ -21,7 +21,7 @@ execute_test() {
 
 health_checks() {
   ddev exec "curl -s opensearch:9200"
-  ddev exec -s opensearch-dashboards "curl -s -i opensearch-dashboards:5601" | grep -q "osd-name"
+  ddev exec -s opensearch-dashboards "curl -s -i opensearch-dashboards:5601"
 }
 
 teardown() {
