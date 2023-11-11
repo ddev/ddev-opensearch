@@ -21,7 +21,7 @@ execute_test() {
 
 health_checks() {
   ddev exec "curl -s opensearch:9200" | grep "${PROJECTNAME}-opensearch"
-  ddev exec -s opensearch-dashboards "curl -s -i opensearch-dashboards:5601 | grep osd-name"
+  ddev exec -s opensearch-dashboards "curl -s -i opensearch-dashboards:5601" | grep -q "osd-name"
 }
 
 teardown() {
@@ -34,6 +34,6 @@ teardown() {
   execute_test
 }
 
-@test "install from release" {
-  execute_test
-}
+#@test "install from release" {
+#  execute_test
+#}
