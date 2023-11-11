@@ -22,7 +22,7 @@ health_checks() {
   set +u # bats-assert has unset variables so turn off unset check
   # ddev restart is required because we have done `ddev get` on a new service
   run ddev restart
-  #assert_success
+  assert_success
 
   # Make sure we can hit the 9201 and 5602 port successfully
   curl -s -I -f https://${PROJNAME}.ddev.site:9201 >/tmp/curlout.txt
