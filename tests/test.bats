@@ -34,6 +34,6 @@ teardown() {
   execute_test
 }
 
-#@test "install from release" {
-#  execute_test
-#}
+@test "install from release" {
+  execute_test
+}
