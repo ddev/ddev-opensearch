@@ -1,5 +1,6 @@
 setup() {
   set -eu -o pipefail
+  set -x
 
   brew_prefix=$(brew --prefix)
   load "${brew_prefix}/lib/bats-support/load.bash"
