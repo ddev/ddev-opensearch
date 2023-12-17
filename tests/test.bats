@@ -27,6 +27,7 @@ health_checks() {
   # Make sure we can hit the 9201 and 5602 port successfully
   curl -s -I -f https://${PROJNAME}.ddev.site:9201 >/tmp/curlout.txt
   curl -s -I -f https://${PROJNAME}.ddev.site:5602 >/tmp/curlout.txt
+  cat /tmp/curlout.txt
 }
 
 teardown() {
