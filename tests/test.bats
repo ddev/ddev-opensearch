@@ -1,6 +1,5 @@
 setup() {
   set -eu -o pipefail
-  set -x
 
   brew_prefix=$(brew --prefix)
   load "${brew_prefix}/lib/bats-support/load.bash"
@@ -26,9 +25,8 @@ health_checks() {
   assert_success
 
   # Make sure we can hit the 9201 and 5602 port successfully
-  curl -s -I -f https://${PROJNAME}.ddev.site:9201 >/tmp/curlout.txt
-  curl -s -I -f https://${PROJNAME}.ddev.site:5602 >/tmp/curlout.txt
-  cat /tmp/curlout.txt
+  curl -s -I -f https://${PROJNAME}.ddev.site:9201
+  curl -s -I -f https://${PROJNAME}.ddev.site:5601
 }
 
 teardown() {
