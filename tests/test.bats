@@ -23,10 +23,12 @@ health_checks() {
   # ddev restart is required because we have done `ddev get` on a new service
   run ddev restart
   assert_success
+  
+  # Check opensearch port
+  ddev exec "curl -s opensearch:9200" | grep "${PROJNAME}-opensearch"
 
-  # Make sure we can hit the 9201 and 5602 port successfully
-  curl -s -I -f https://${PROJNAME}.ddev.site:9201
-  #curl -s -I -f https://${PROJNAME}.ddev.site:5602
+  # Check if dashboard is accessible
+  ddev exec "curl -s opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
 }
 
 teardown() {
