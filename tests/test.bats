@@ -25,10 +25,10 @@ health_checks() {
   assert_success
   
   # Check opensearch port
-  ddev exec "curl -s opensearch:9200" | grep "${PROJNAME}-opensearch"
+  ddev exec "curl -s http://opensearch:9200" | grep "${PROJNAME}-opensearch"
 
   # Check if dashboard is accessible
-  ddev exec "curl -s opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
+  ddev exec "curl -s http://opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
 }
 
 teardown() {
