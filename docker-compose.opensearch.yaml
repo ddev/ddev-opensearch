@@ -7,6 +7,7 @@ services:
     build: ./opensearch
     expose:
       - "9200"
+    networks: [default, ddev_default]
     environment:
       # disables installation of demo data
       - "DISABLE_INSTALL_DEMO_CONFIG=true"
@@ -30,6 +31,7 @@ services:
     image: opensearchproject/opensearch-dashboards:latest
     container_name: 'ddev-${DDEV_SITENAME}-opensearch-dashboards'
     hostname: '${DDEV_SITENAME}-opensearch-dashboards'
+    networks: [default, ddev_default]
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
       - OPENSEARCH_HOSTS=http://ddev-${DDEV_PROJECT}-opensearch:9200
