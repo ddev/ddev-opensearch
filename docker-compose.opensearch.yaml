@@ -51,7 +51,7 @@ services:
     depends_on:
       - opensearch
     links:
-      - 'opensearch:opensearch'
+      - 'opensearch:opensearch'      
 
 volumes:
   opensearch:

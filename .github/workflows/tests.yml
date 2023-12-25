@@ -43,7 +43,7 @@ jobs:
     steps:
     - uses: ddev/github-action-add-on-test@v1
       with:
-        ddev_version: "stable"
+        ddev_version: ${{ matrix.ddev_version }}
         token: ${{ secrets.GITHUB_TOKEN }}
         debug_enabled: ${{ github.event.inputs.debug_enabled }}
         addon_repository: ${{ env.GITHUB_REPOSITORY }}
