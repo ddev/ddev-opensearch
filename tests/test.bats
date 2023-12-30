@@ -14,7 +14,7 @@ setup() {
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   ddev config --project-name=${PROJNAME}
-  ddev config --omit-containers=dba >/dev/null 2>&1 || true
+  ddev config --omit-containers="db" >/dev/null 2>&1 || true
   ddev start -y >/dev/null
 }
 
@@ -29,7 +29,7 @@ health_checks() {
 
   # Check if dashboard is accessible
   # Currently disabled due to not clear issues in Github action
-  #ddev exec "curl -s http://opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
+  ddev exec "curl -s http://opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
 }
 
 teardown() {
