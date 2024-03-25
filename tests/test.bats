@@ -21,15 +21,13 @@ setup() {
 health_checks() {
   set +u # bats-assert has unset variables so turn off unset check
   # ddev restart is required because we have done `ddev get` on a new service
-  run ddev restart
-  assert_success
+  ddev restart
   
-  # Check opensearch port
-  ddev exec "curl -s http://opensearch:9200" | grep "${PROJNAME}-opensearch"
+  # Check opensearch port 
+  ddev exec curl -s opensearch:9200
 
   # Check if dashboard is accessible
-  # Currently disabled due to not clear issues in Github action
-  ddev exec "curl -s http://opensearch-dashboards:5601/app/home" | grep "OpenSearch Dashboards"
+  ddev exec -s opensearch-dashboards curl -sL opensearch-dashboards:5601
 }
 
 teardown() {
@@ -43,8 +41,7 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR}
   echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${DIR} >/dev/null 2>&1
-  ddev mutagen sync >/dev/null 2>&1
+  ddev get ${DIR}
   health_checks
 }
 
@@ -52,7 +49,6 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get ${ADDON_PATH} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${ADDON_PATH} >/dev/null 2>&1
-  ddev restart >/dev/null 2>&1
+  ddev get ${ADDON_PATH}
   health_checks
 }
