@@ -27,10 +27,10 @@ health_checks() {
   ddev describe
   
   # Check opensearch port 
-  ddev exec curl -s opensearch:9200
+  curl -sL https://test-opensearch.ddev.site:9201
 
   # Check if dashboard is accessible
-  ddev exec -s opensearch-dashboards curl -sL opensearch-dashboards:5601
+  curl -sL https://test-opensearch.ddev.site:5602
 }
 
 teardown() {
