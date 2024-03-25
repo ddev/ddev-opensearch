@@ -22,6 +22,9 @@ health_checks() {
   set +u # bats-assert has unset variables so turn off unset check
   # ddev restart is required because we have done `ddev get` on a new service
   ddev restart
+
+  # For debugging purposes
+  ddev describe
   
   # Check opensearch port 
   ddev exec curl -s opensearch:9200
