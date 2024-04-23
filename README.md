@@ -1,20 +1,20 @@
-# DDEV opensearch Addon
+# DDEV OpenSearch Add-on
 
-This addon sets up two services in your [ddev](https://ddev.com) project.
+This addon sets up two services in your [DDEV](https://ddev.com) project.
 
 - [OpenSearch](https://opensearch.org/) service (Docker Image: `opensearchproject/opensearch:latest`)
 - [OpenSearch Dashboards](https://opensearch.org/) service (Docker Image: `opensearchproject/opensearch-dashboards:latestopensearch:latest`)
 
-We activat this plugins out-of-the-box:
+We activate these plugins out-of-the-box:
 - analysis-phonetic
 - analysis-icu
 
-To change the version update the `.ddev/opensearch/Dockerfile` for the main OpenSearch Service.
-Update the file `.ddev/docker-compose.opensearch.yaml` for a compartible Dashboards version.
+To change the version, update the `.ddev/opensearch/Dockerfile` for the main OpenSearch Service.
+Update the file `.ddev/docker-compose.opensearch.yaml` for a compatible Dashboards version.
 
 ## Installation
 
-1. Run `ddev get netz98/ddev-opensearch` to install the addon in your exiting ddev project.
+1. Run `ddev get ddev/ddev-opensearch` to install the addon in your exiting DDEV project.
 2. `ddev restart` to restart your project.
 
 ## Usage
@@ -27,6 +27,10 @@ Run `ddev describe` to list your project's services and their URLs.
 
 ## Logging
 
-All logs are directed to the container's stdout. 
+All logs are directed to the container's stdout.
 
 You can view the logs with `ddev logs -s opensearch` and `ddev logs -s opensearch-dashboards`
+
+**Contributed and maintained by [@cmuench](https://github.com/cmuench) from [@netz98](https://github.com/netz98) org**
+
+**Co-maintained by [@stasadev](https://github.com/stasadev)**

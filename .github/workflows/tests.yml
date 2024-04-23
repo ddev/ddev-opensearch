@@ -15,17 +15,9 @@ on:
         required: false
         default: false
 
-defaults:
-  run:
-    shell: bash
-
-# This is required for "gautamkrishnar/keepalive-workflow"
+# This is required for "gautamkrishnar/keepalive-workflow", see "ddev/github-action-add-on-test"
 permissions:
-  contents: write
-
-env:
-  # Allow ddev get to use a GitHub token to prevent rate limiting by tests
-  DDEV_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  actions: write
 
 jobs:
   tests:
@@ -38,10 +30,10 @@ jobs:
         ddev_version: [stable, HEAD]
       fail-fast: false
 
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: ddev/github-action-add-on-test@v1
+    - uses: ddev/github-action-add-on-test@v2
       with:
         ddev_version: ${{ matrix.ddev_version }}
         token: ${{ secrets.GITHUB_TOKEN }}
