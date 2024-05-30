@@ -1,3 +1,4 @@
+#ddev-generated
 FROM opensearchproject/opensearch:latest
 WORKDIR /usr/share/opensearch
  
