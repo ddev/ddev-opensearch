@@ -36,6 +36,16 @@ ddev dotenv set .ddev/.env.opensearch \
     --opensearch-dashboards-tag=2.15.0 \
     --install-plugin-analytics-phonetic=false \ 
     --install-plugin-analytics-icu=false
+
+# rebuild opensearch image (required step)
+ddev debug rebuild -s opensearch
+
+# remove old opensearch volume (if this is downgrade)
+ddev stop
+docker volume rm ddev-$(ddev status -j | docker run -i --rm ddev/ddev-utilities jq -r '.raw.name')_opensearch
+
+# and restart the project
+ddev restart
 ```
 
 ## Usage
