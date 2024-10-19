@@ -34,7 +34,8 @@ Example:
 ddev dotenv set .ddev/.env.opensearch \
     --opensearch-tag=2.15.0 \
     --opensearch-dashboards-tag=2.15.0 \
-    --install-plugin-analytics-phonetic=false \ --install-plugin-analytics-icu=false
+    --install-plugin-analytics-phonetic=false \ 
+    --install-plugin-analytics-icu=false
 ```
 
 ## Usage
