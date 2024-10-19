@@ -20,7 +20,7 @@ setup() {
 
 health_checks() {
   set +u # bats-assert has unset variables so turn off unset check
-  # ddev restart is required because we have done `ddev get` on a new service
+  # ddev restart is required because we have done `ddev add-on get` on a new service
   ddev restart
 
   # For debugging purposes
@@ -43,15 +43,16 @@ teardown() {
 @test "install from directory" {
   set -eu -o pipefail
   cd ${TESTDIR}
-  echo "# ddev get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${DIR}
+  echo "# ddev add-on get ${DIR} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  ddev add-on get ${DIR}
   health_checks
 }
 
+# bats test_tags=release
 @test "install from release" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  echo "# ddev get ${ADDON_PATH} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+  echo "# ddev add-on get ${ADDON_PATH} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
   ddev get ${ADDON_PATH}
   health_checks
 }

@@ -1,6 +1,13 @@
 #ddev-generated
-FROM opensearchproject/opensearch:latest
+ARG OPENSEARCH_TAG=latest
+
+FROM opensearchproject/opensearch:${OPENSEARCH_TAG}
+
+ARG INSTALL_PLUGIN_ANALYSIS_PHONETIC=true
+ARG INSTALL_PLUGIN_ANALYSIS_ICU=true
+
 WORKDIR /usr/share/opensearch
- 
-RUN bin/opensearch-plugin install analysis-phonetic
-RUN bin/opensearch-plugin install analysis-icu
+
+# Install plugins
+RUN if [ "${INSTALL_PLUGIN_ANALYSIS_PHONETIC}" = "true" ]; then bin/opensearch-plugin install analysis-phonetic; fi
+RUN if [ "${INSTALL_PLUGIN_ANALYSIS_ICU}" = "true" ]; then bin/opensearch-plugin install analysis-icu; fi

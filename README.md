@@ -14,8 +14,39 @@ Update the file `.ddev/docker-compose.opensearch.yaml` for a compatible Dashboar
 
 ## Installation
 
-1. Run `ddev get ddev/ddev-opensearch` to install the addon in your exiting DDEV project.
+1. Run `ddev add-on get ddev/ddev-opensearch` to install the addon in your exiting DDEV project.
 2. `ddev restart` to restart your project.
+
+## Configuration
+
+To modify the build of the used OpenSearch image for the container there are dotenv variables available.
+
+- `OPENSEARCH_TAG` - The version of the OpenSearch image to use. Default: `latest`
+- `OPENSEARCH_DASHBOARDS_TAG` - The version of the OpenSearch Dashboards image to use. Default: `latest`
+- `INSTALL_PLUGIN_ANALYSIS_PHONETIC` - Install the analysis-phonetic plugin. Default: `true`
+- `INSTALL_PLUGIN_ANALYSIS_ICU` - Install the analysis-icu plugin. Default: `true`
+
+Use the `ddev dotenv` command to set these variables.
+
+Example:
+
+```bash
+ddev dotenv set .ddev/.env.opensearch \
+    --opensearch-tag=2.15.0 \
+    --opensearch-dashboards-tag=2.15.0 \
+    --install-plugin-analytics-phonetic=false \ 
+    --install-plugin-analytics-icu=false
+
+# rebuild opensearch image (required step)
+ddev debug rebuild -s opensearch
+
+# remove old opensearch volume (if this is downgrade)
+ddev stop
+docker volume rm ddev-$(ddev status -j | docker run -i --rm ddev/ddev-utilities jq -r '.raw.name')_opensearch
+
+# and restart the project
+ddev restart
+```
 
 ## Usage
 

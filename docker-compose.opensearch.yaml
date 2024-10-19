@@ -2,7 +2,13 @@
 services:
   opensearch:
     container_name: ddev-${DDEV_SITENAME}-opensearch
-    build: ./opensearch
+    build: 
+      context: ./opensearch
+      dockerfile: Dockerfile
+      args:
+        OPENSEARCH_TAG: ${OPENSEARCH_TAG:-latest}
+        INSTALL_PLUGIN_ANALYSIS_PHONETIC: ${INSTALL_PLUGIN_ANALYSIS_PHONETIC:-true}
+        INSTALL_PLUGIN_ANALYSIS_ICU: ${INSTALL_PLUGIN_ANALYSIS_ICU:-true}
     expose:
       - 9200
     environment:
@@ -30,7 +36,7 @@ services:
       test: ["CMD-SHELL", "curl --fail -s localhost:9200"]
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
+    image: opensearchproject/opensearch-dashboards:${OPENSEARCH_DASHBOARDS_TAG:-latest}
     container_name: 'ddev-${DDEV_SITENAME}-opensearch-dashboards'
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
