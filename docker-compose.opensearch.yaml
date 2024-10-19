@@ -36,7 +36,7 @@ services:
       test: ["CMD-SHELL", "curl --fail -s localhost:9200"]
 
   opensearch-dashboards:
-    image: opensearchproject/opensearch-dashboards:latest
+    image: opensearchproject/opensearch-dashboards:${OPENSEARCH_DASHBOARDS_TAG:-latest}
     container_name: 'ddev-${DDEV_SITENAME}-opensearch-dashboards'
     environment:
       - VIRTUAL_HOST=$DDEV_HOSTNAME
