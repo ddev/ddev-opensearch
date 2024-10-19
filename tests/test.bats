@@ -25,8 +25,8 @@ health_checks() {
 
   # For debugging purposes
   ddev describe
-  
-  # Check opensearch port 
+
+  # Check opensearch port
   curl -sL https://test-opensearch.ddev.site:9201
 
   # Check if dashboard is accessible
@@ -53,6 +53,6 @@ teardown() {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev add-on get ${ADDON_PATH} with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get ${ADDON_PATH}
+  ddev add-on get ${ADDON_PATH}
   health_checks
 }
