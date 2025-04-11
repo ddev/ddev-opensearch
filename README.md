@@ -10,8 +10,8 @@
 
 This add-on sets up two services in your [DDEV](https://ddev.com) project:
 
-- [OpenSearch](https://opensearch.org/) service (Docker Image: `opensearchproject/opensearch:latest`)
-- [OpenSearch Dashboards](https://opensearch.org/docs/latest/dashboards/) service (Docker Image: `opensearchproject/opensearch-dashboards:latestopensearch:latest`)
+- [OpenSearch](https://opensearch.org/) service (Docker image: `opensearchproject/opensearch:latest`)
+- [OpenSearch Dashboards](https://opensearch.org/docs/latest/dashboards/) service (Docker image: `opensearchproject/opensearch-dashboards:latest`)
 
 We activate these [OpenSearch plugins](https://opensearch.org/docs/latest/install-and-configure/additional-plugins/index/) out-of-the-box:
 
@@ -73,6 +73,8 @@ All customization options (use with caution):
 | `OPENSEARCH_PLUGINS` | `--opensearch-plugins` | `analysis-icu analysis-phonetic` |
 | `OPENSEARCH_TAG` | `--opensearch-tag` | `latest` |
 | `OPENSEARCH_DASHBOARDS_TAG` | `--opensearch-dashboards-tag` | `latest` |
+
+## Credits
 
 **Contributed and maintained by [@cmuench](https://github.com/cmuench) from [@netz98](https://github.com/netz98) org**
 
