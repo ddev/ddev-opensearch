@@ -1,3 +1,4 @@
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/ddev/ddev-opensearch/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/ddev/ddev-opensearch/actions/workflows/tests.yml?query=branch%3Amain)
 [![last commit](https://img.shields.io/github/last-commit/ddev/ddev-opensearch)](https://github.com/ddev/ddev-opensearch/commits)
 [![release](https://img.shields.io/github/v/release/ddev/ddev-opensearch)](https://github.com/ddev/ddev-opensearch/releases/latest)
@@ -31,8 +32,8 @@ After installation, make sure to commit the `.ddev` directory to version control
 
 | Command | Description |
 | ------- | ----------- |
-| `ddev launch :9201` | OpenSearch |
-| `ddev launch :5602` | OpenSearch Dashboards |
+| `ddev launch :9201` | Open OpenSearch in your browser |
+| `ddev launch :5602` | Open OpenSearch Dashboards in your browser |
 | `ddev describe` | View service status and used ports for OpenSearch |
 | `ddev logs -s opensearch` | View OpenSearch logs |
 | `ddev logs -s opensearch-dashboards` | View OpenSearch Dashboards logs |
