@@ -2,13 +2,15 @@
 services:
   opensearch:
     container_name: ddev-${DDEV_SITENAME}-opensearch
-    build: 
-      context: ./opensearch
-      dockerfile: Dockerfile
+    build:
+      dockerfile_inline: |
+        ARG OPENSEARCH_TAG="latest"
+        FROM opensearchproject/opensearch:$${OPENSEARCH_TAG}
+        ARG OPENSEARCH_PLUGINS="analysis-icu analysis-phonetic"
+        RUN for plugin in $${OPENSEARCH_PLUGINS}; do opensearch-plugin install $$plugin; done
       args:
         OPENSEARCH_TAG: ${OPENSEARCH_TAG:-latest}
-        INSTALL_PLUGIN_ANALYSIS_PHONETIC: ${INSTALL_PLUGIN_ANALYSIS_PHONETIC:-true}
-        INSTALL_PLUGIN_ANALYSIS_ICU: ${INSTALL_PLUGIN_ANALYSIS_ICU:-true}
+        OPENSEARCH_PLUGINS: ${OPENSEARCH_PLUGINS-analysis-icu analysis-phonetic}
     expose:
       - 9200
     environment:
@@ -27,7 +29,7 @@ services:
       - HTTPS_EXPOSE=9201:9200
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
-      com.ddev.approot: $DDEV_APPROOT
+      com.ddev.approot: ${DDEV_APPROOT}
     volumes:
       - opensearch:/usr/share/opensearch/data
       - ".:/mnt/ddev_config"
