@@ -2,6 +2,7 @@
 services:
   opensearch:
     container_name: ddev-${DDEV_SITENAME}-opensearch
+    image: opensearchproject/opensearch:${OPENSEARCH_TAG:-latest}-${DDEV_SITENAME}-built
     build:
       dockerfile_inline: |
         ARG OPENSEARCH_TAG="latest"
