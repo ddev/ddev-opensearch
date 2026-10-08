@@ -5,7 +5,6 @@ project_files:
 
 pre_install_actions:
   - |
-    #ddev-nodisplay
     #ddev-description:Removing old Dockerfile
     file="${DDEV_APPROOT}/.ddev/opensearch/Dockerfile"
     if [ -f "${file}" ]; then
@@ -17,4 +16,4 @@ pre_install_actions:
       fi
     fi
 
-ddev_version_constraint: '>= v1.24.3'
+ddev_version_constraint: '>= v1.24.10'
